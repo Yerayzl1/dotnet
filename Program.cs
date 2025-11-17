@@ -1,10 +1,11 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Threading.Tasks;
 using CsBases.Fundamentals;
 
 class Program
 {
-  static void Main()
+  static async Task Main()
   {
     var laptop = new Product("Laptop", 1200);
     // WriteLine(laptop.GetDescription());
@@ -19,7 +20,10 @@ class Program
     var manager = new ProductManager(labelService);
     var monitor = new Product("Monitor", 100);
     var installation = new ServiceProduct("Instalación de monitor", 20, 30);
-    manager.PrintLabel(monitor);
-    manager.PrintLabel(installation);
+    // manager.PrintLabel(monitor);
+    // manager.PrintLabel(installation);
+
+    var firstProduct = await new ProductRepository().GetProduct(1);
+    WriteLine($"{firstProduct.Name} - {firstProduct.Price:C}");
   }
 }
